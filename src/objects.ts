@@ -11,14 +11,14 @@ export function makeBlankQuestion(
     type: QuestionType
 ): Question {
     const blankQuestion = {
-        id: id,
-        name: name,
-        type: type,
         body: "",
         expected: "",
+        id: id,
+        name: name,
         options: [],
         points: 1,
-        published: false
+        published: false,
+        type: type
     };
     return blankQuestion;
 }
@@ -82,34 +82,34 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
- const questionName = "# " + question.name;
- const questionBody = question.body;
- const questionOptions = question.options.map(
-     (message: string): string => "- " + message
- );
- if (question.type === "short_answer_question") {
-     return questionName + "\n" + questionBody;
- } else {
-     return (
-         questionName +
-         "\n" +
-         questionBody +
-         "\n" +
-         questionOptions[0] +
-         "\n" +
-         questionOptions[1] +
-         "\n" +
-         questionOptions[2]
-     );
+    const questionName = "# " + question.name;
+    const questionBody = question.body;
+    const questionOptions = question.options.map(
+        (message: string): string => "- " + message
+    );
+    if (question.type === "short_answer_question") {
+        return questionName + "\n" + questionBody;
+    } else {
+        return (
+            questionName +
+            "\n" +
+            questionBody +
+            "\n" +
+            questionOptions[0] +
+            "\n" +
+            questionOptions[1] +
+            "\n" +
+            questionOptions[2]
+        );
     }
-
-
+}
 /**
  * Return a new version of the given question, except the name should now be
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return { ...question, name: newName };
+    const newQuestion: Question = { ...question, name: newName };
+    return newQuestion;
 }
 
 /**
@@ -144,8 +144,11 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-const newOptions = [...question.options, newOption];
-    return { ...question, options: newOptions };
+const addedOption: Question = {
+        ...question,
+        options: [...question.options, newOption]
+    };
+    return addedOption;
 }
 
 /**
@@ -157,10 +160,21 @@ const newOptions = [...question.options, newOption];
  * field; but the function call would be the same as if it were a `Question` type!
  */
 export function mergeQuestion(
-    id: number,
+     id: number,
     name: string,
     contentQuestion: Question,
     { points }: { points: number }
-): Question{
-    return { ...contentQuestion, published: false, points, id, name };
+): Question {
+    return {
+        id: id,
+        //id: contentQuestion.id.map((o: number): number => id + o),
+        //id: contentQuestion.id,
+        name: name,
+        type: contentQuestion.type,
+        body: contentQuestion.body,
+        expected: contentQuestion.expected,
+        options: contentQuestion.options,
+        points: points,
+        published: false
+    };
 }
