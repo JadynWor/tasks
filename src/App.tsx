@@ -11,7 +11,7 @@ function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                JadynWor UD_CISC275 with React Hooks and TypeScript
+                JadynWor_UD_CISC275 with React Hooks and TypeScript
             </header>
             <hr></hr>
             <Counter></Counter>
