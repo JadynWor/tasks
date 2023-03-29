@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
 export function StartAttempt(): JSX.Element {
-     const [progress, setProgress] = useState<boolean>(false);
+    const [progress, setProgress] = useState<boolean>(false);
     const [attempt, setAttempt] = useState<number>(4);
     function changeProgress(): void {
         setProgress(progress === false ? true : false);
