@@ -14,40 +14,43 @@ export function ChooseTeam(): JSX.Element {
     const [allOptions, setAllOptions] = useState<string[]>(PEOPLE);
     const [team, setTeam] = useState<string[]>([]);
 
-    function chooseMember() {
-        /*
-        if (!team.includes(newMember)) {
-            team.push(newMember);
+    function chooseMember(newMemb: string) {
+        if (!team.includes(newMemb)) {
+            setTeam([...team, newMemb]);
+            setAllOptions(
+                allOptions.filter(
+                    (person: string): boolean => person !== newMemb
+                )
+            );
         }
-        */
     }
-
     function clearTeam() {
-        /*
-        team = [];
-        */
+        setTeam([]);
+        setAllOptions(PEOPLE);
     }
-
     return (
         <div>
-            <h3>Choose Team</h3>
+            <h3>Select an Team</h3>
             <Row>
                 <Col>
                     {allOptions.map((option: string) => (
-                        <div key={option} style={{ marginBottom: "4px" }}>
+                        <div key={option} style={{ marginBottom: "8px" }}>
                             Add{" "}
-                            <Button onClick={chooseMember} size="sm">
+                            <Button
+                                onClick={() => chooseMember(option)}
+                                size="lg"
+                            >
                                 {option}
                             </Button>
                         </div>
                     ))}
                 </Col>
                 <Col>
-                    <strong>Team:</strong>
-                    {team.map((member: string) => (
-                        <li key={member}>{member}</li>
+                    <strong>Picked:</strong>
+                    {team.map((player: string) => (
+                        <li key={player}>{player}</li>
                     ))}
-                    <Button onClick={clearTeam}>Clear Team</Button>
+                    <Button onClick={clearTeam}>Reset Team</Button>
                 </Col>
             </Row>
         </div>
