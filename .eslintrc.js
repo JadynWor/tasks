@@ -25,4 +25,16 @@ module.exports = {
   ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
   sourceType: 'module' // Allows for the use of imports
     }
+    ,
+    "overrides": [
+    {
+      "files": [
+        "**/*.spec.js",
+        "**/*.spec.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
