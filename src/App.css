@@ -22,7 +22,7 @@
     align-items: center;
     justify-content: center;
     font-size: calc(25px + 2vmin);
-    color: white;
+    color: rgb(0, 0, 0);
 }
 .Image-header{
     background-color: brown;
