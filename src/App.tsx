@@ -26,9 +26,9 @@ function App(): JSX.Element {
                 alt="Crazy Dog"
             />
             <ul className="unordered-list">
-                <li>Good morning</li>
-                <li>Good evening</li>
-                <li>Good night</li>
+                <li>Good morning Breakfast</li>
+                <li>Good evening Lunch</li>
+                <li>Good night Dinner</li>
             </ul>
             <div>
                 <p>
