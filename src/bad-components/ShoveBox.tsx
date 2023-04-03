@@ -18,10 +18,10 @@ function MoveableBox({ position }: { position: number }): JSX.Element {
         <div
             data-testid="moveable-box"
             style={{
-                width: "75px",
-                height: "75px",
-                backgroundColor: "Black",
-                border: "1px solid gold",
+                width: "50px",
+                height: "50px",
+                backgroundColor: "lightblue",
+                border: "1px solid blue",
                 display: "inline-block",
                 verticalAlign: "bottom",
                 marginLeft: position + "px"
