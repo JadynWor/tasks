@@ -10,7 +10,6 @@ PASS src/components/TwoDice.test.tsx
 PASS src/form-components/MultipleChoiceQuestion.test.tsx
 PASS src/bad-components/ChooseTeam.test.tsx
 PASS src/bad-components/DoubleHalf.test.tsx
-PASS src/HtmlCss.test.tsx
 PASS src/functions.test.ts
 PASS src/form-components/CheckAnswer.test.tsx
 FAIL src/form-components/EditMode.test.tsx
@@ -119,70 +118,15 @@ FAIL src/form-components/GiveAttempts.test.tsx
 PASS src/form-components/ChangeColor.test.tsx
 PASS src/components/Counter.test.tsx
 PASS src/components/RevealAnswer.test.tsx
-FAIL src/bad-components/ColoredBox.test.tsx
-  ● ColoredBox Component tests › The ColoredBox is initially red.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - backgroundColor: red;
-
-       9 |     test("The ColoredBox is initially red.", () => {
-      10 |         const box = screen.getByTestId("colored-box");
-    > 11 |         expect(box).toHaveStyle({ backgroundColor: "red" });
-         |                     ^
-      12 |     });
-      13 |     test("There is a button", () => {
-      14 |         expect(screen.getByRole("button")).toBeInTheDocument();
-
-      at Object.<anonymous> (src/bad-components/ColoredBox.test.tsx:11:21)
-
-  ● ColoredBox Component tests › Clicking the button advances the color.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - backgroundColor: blue;
-
-      17 |         const nextColor = screen.getByRole("button");
-      18 |         nextColor.click();
-    > 19 |         expect(screen.getByTestId("colored-box")).toHaveStyle({
-         |                                                   ^
-      20 |             backgroundColor: "blue"
-      21 |         });
-      22 |         nextColor.click();
-
-      at Object.<anonymous> (src/bad-components/ColoredBox.test.tsx:19:51)
-
-FAIL src/bad-components/ShoveBox.test.tsx
-  ● ShoveBox Component tests › Clicking the button moves the box.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - marginLeft: 14px;
-
-      17 |         const shoveBox = screen.getByRole("button");
-      18 |         shoveBox.click();
-    > 19 |         expect(screen.getByTestId("moveable-box")).toHaveStyle({
-         |                                                    ^
-      20 |             marginLeft: "14px"
-      21 |         });
-      22 |         shoveBox.click();
-
-      at Object.<anonymous> (src/bad-components/ShoveBox.test.tsx:19:52)
-
-PASS src/text.test.tsx
+PASS src/bad-components/ColoredBox.test.tsx
+PASS src/bad-components/ShoveBox.test.tsx
 PASS src/App.test.tsx
 -----------------------------|---------|----------|---------|---------|-------------------
 File                         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 -----------------------------|---------|----------|---------|---------|-------------------
-All files                    |     100 |    98.95 |     100 |     100 |                   
- src                         |     100 |      100 |     100 |     100 |                   
-  App.tsx                    |     100 |      100 |     100 |     100 |                   
+All files                    |   99.61 |    98.95 |   99.21 |   99.61 |                   
+ src                         |   99.42 |      100 |   98.73 |   99.41 |                   
+  App.tsx                    |      50 |      100 |      50 |      50 | 39                
   arrays.ts                  |     100 |      100 |     100 |     100 |                   
   functions.ts               |     100 |      100 |     100 |     100 |                   
   nested.ts                  |     100 |      100 |     100 |     100 |                   
@@ -210,167 +154,8 @@ All files                    |     100 |    98.95 |     100 |     100 |
   question.ts                |       0 |        0 |       0 |       0 |                   
 -----------------------------|---------|----------|---------|---------|-------------------
 
-Summary of all failing tests
-FAIL src/form-components/EditMode.test.tsx
-  ● EditMode Component tests › Editing the name and student status changes the text
-
-    TestingLibraryElementError: Unable to find an element with the text: /Ada Lovelace is not a student/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
-
-    Ignored nodes: comments, script, style
-    [36m<body>[39m
-      [36m<div>[39m
-        [36m<div>[39m
-          [36m<div>[39m
-            [0mYour NameAda Lovelace[0m
-            [0m is [0m
-            [0mnot [0m
-            [0m student[0m
-          [36m</div>[39m
-          [36m<div[39m
-            [33mclass[39m=[32m"form-check form-switch"[39m
-          [36m>[39m
-            [36m<input[39m
-              [33mclass[39m=[32m"form-check-input"[39m
-              [33mtype[39m=[32m"checkbox"[39m
-            [36m/>[39m
-            [36m<label[39m
-              [33mclass[39m=[32m"form-check-label"[39m
-              [33mtitle[39m=[32m""[39m
-            [36m>[39m
-              [0mEdit[0m
-            [36m</label>[39m
-          [36m</div>[39m
-        [36m</div>[39m
-      [36m</div>[39m
-    [36m</body>[39m
-
-      30 |         switchButton.click();
-      31 |         expect(
-    > 32 |             screen.getByText(/Ada Lovelace is not a student/i)
-         |                    ^
-      33 |         ).toBeInTheDocument();
-      34 |     });
-      35 |     test("Different name, click student box twice changes the text", () => {
-
-      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
-      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/form-components/EditMode.test.tsx:32:20)
-
-FAIL src/form-components/GiveAttempts.test.tsx
-  ● GiveAttempts Component tests › You can gain arbitrary attempts
-
-    TestingLibraryElementError: Unable to find an element with the text: /113/i. This could be because the text is broken up by multiple elements. In this case, you can provide a function for your text matcher to make your matcher more flexible.
-
-    Ignored nodes: comments, script, style
-    [36m<body>[39m
-      [36m<div>[39m
-        [36m<div>[39m
-          [36m<h3>[39m
-            [0mGive attempts[0m
-          [36m</h3>[39m
-          [36m<div>[39m
-            [36m<input[39m
-              [33mclass[39m=[32m"form-control"[39m
-              [33mid[39m=[32m"formGiveAttempts"[39m
-              [33mtype[39m=[32m"number"[39m
-              [33mvalue[39m=[32m"1"[39m
-            [36m/>[39m
-          [36m</div>[39m
-          [36m<div>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0muse[0m
-            [36m</button>[39m
-            [36m<button[39m
-              [33mclass[39m=[32m"btn btn-primary"[39m
-              [33mtype[39m=[32m"button"[39m
-            [36m>[39m
-              [0mgain[0m
-            [36m</button>[39m
-            [0mAttempts left: [0m
-            [0m110213[0m
-          [36m</div>[39m
-        [36m</div>[39m
-      [36m</div>[39m
-    [36m</body>[39m
-
-      35 |         userEvent.type(amountToGive, "100");
-      36 |         gain.click();
-    > 37 |         expect(screen.getByText(/113/i)).toBeInTheDocument();
-         |                       ^
-      38 |     });
-      39 |     test("Cannot gain blank amounts", () => {
-      40 |         const gain = screen.getByRole("button", { name: /gain/i });
-
-      at Object.getElementError (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/config.js:37:19)
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:76:38
-      at node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:52:17
-      at getByText (node_modules/@testing-library/react/node_modules/@testing-library/dom/dist/query-helpers.js:95:19)
-      at Object.<anonymous> (src/form-components/GiveAttempts.test.tsx:37:23)
-
-FAIL src/bad-components/ColoredBox.test.tsx
-  ● ColoredBox Component tests › The ColoredBox is initially red.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - backgroundColor: red;
-
-       9 |     test("The ColoredBox is initially red.", () => {
-      10 |         const box = screen.getByTestId("colored-box");
-    > 11 |         expect(box).toHaveStyle({ backgroundColor: "red" });
-         |                     ^
-      12 |     });
-      13 |     test("There is a button", () => {
-      14 |         expect(screen.getByRole("button")).toBeInTheDocument();
-
-      at Object.<anonymous> (src/bad-components/ColoredBox.test.tsx:11:21)
-
-  ● ColoredBox Component tests › Clicking the button advances the color.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - backgroundColor: blue;
-
-      17 |         const nextColor = screen.getByRole("button");
-      18 |         nextColor.click();
-    > 19 |         expect(screen.getByTestId("colored-box")).toHaveStyle({
-         |                                                   ^
-      20 |             backgroundColor: "blue"
-      21 |         });
-      22 |         nextColor.click();
-
-      at Object.<anonymous> (src/bad-components/ColoredBox.test.tsx:19:51)
-
-FAIL src/bad-components/ShoveBox.test.tsx
-  ● ShoveBox Component tests › Clicking the button moves the box.
-
-    expect(element).toHaveStyle()
-
-    - Expected
-
-    - marginLeft: 14px;
-
-      17 |         const shoveBox = screen.getByRole("button");
-      18 |         shoveBox.click();
-    > 19 |         expect(screen.getByTestId("moveable-box")).toHaveStyle({
-         |                                                    ^
-      20 |             marginLeft: "14px"
-      21 |         });
-      22 |         shoveBox.click();
-
-      at Object.<anonymous> (src/bad-components/ShoveBox.test.tsx:19:52)
-
-
-Test Suites: 4 failed, 18 passed, 22 total
-Tests:       5 failed, 137 passed, 142 total
+Test Suites: 2 failed, 18 passed, 20 total
+Tests:       2 failed, 132 passed, 134 total
 Snapshots:   0 total
-Time:        13.284 s
+Time:        12.548 s
 Ran all test suites.
