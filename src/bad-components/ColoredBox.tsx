@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
-export const COLORS = ["black", "gold", "brown", "orange", "green", "yellow"];
+export const COLORS = ["red", "blue", "green"];
 const DEFAULT_COLOR_INDEX = 0;
 export function ColoredBox(): JSX.Element {
     const [colorIndex, setColorIndex] = useState<number>(DEFAULT_COLOR_INDEX);
