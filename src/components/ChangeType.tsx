@@ -7,8 +7,8 @@ export function ChangeType(): JSX.Element {
         "short_answer_question"
     );
     const Question_Transitions: Record<QuestionType, QuestionType> = {
-        multiple_choice_question: "short_answer_question",
-        short_answer_question: "multiple_choice_question"
+        short_answer_question: "multiple_choice_question",
+        multiple_choice_question: "short_answer_question"
     };
     function changeQuestionType(): void {
         const newQuestion = Question_Transitions[questype];
