@@ -48,7 +48,6 @@ function StudentForm({
     setName,
     setStudent,
     isStudent
-
 }: {
     name: string;
     setName: (newVal: string) => void;
