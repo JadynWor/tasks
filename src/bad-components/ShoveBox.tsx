@@ -9,7 +9,7 @@ function ShoveBoxButton({
     setPosition: (newPosition: number) => void;
 }) {
     return (
-        <Button onClick={() => setPosition(5 + position)}>Shove the Box</Button>
+        <Button onClick={() => setPosition(4 + position)}>Shove the Box</Button>
     );
 }
 
