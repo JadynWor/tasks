@@ -16,24 +16,26 @@
 
 .App-header {
     width: 100%;
-    background-color: npm#6a6d95;
+    background-color: #000000;
     min-height: 20vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: calc(25px + 2vmin);
-    color: rgb(0, 0, 0);
+    font-size: calc(10px + 2vmin);
+    color: rgb(255, 255, 255);
 }
-.Image-header{
-    background-color: brown;
-    width: 100;
-    color: rgb(212, 53, 53);
-}
+
 .App-link {
     color: #000000;
 }
-
+.unordered-list{
+    width: 10%;
+    font-size: calc(3px + 2vmin);
+    color: darkred;
+    align-items: center;
+    justify-content: center;
+}
 @keyframes App-logo-spin {
     from {
         transform: rotate(0deg);
@@ -41,9 +43,4 @@
     to {
         transform: rotate(360deg);
     }
-}
-.rectangle{
-    width: 100px;
-    height: 50px;
-    background-color: #df130c;
 }

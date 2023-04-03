@@ -10,17 +10,16 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    const blankQuestion = {
+    return {
+        id,
+        name,
+        type,
         body: "",
         expected: "",
-        id: id,
-        name: name,
         options: [],
         points: 1,
-        published: false,
-        type: type
+        published: false
     };
-    return blankQuestion;
 }
 
 /**
@@ -31,9 +30,14 @@ export function makeBlankQuestion(
  * HINT: Look up the `trim` and `toLowerCase` functions.
  */
 export function isCorrect(question: Question, answer: string): boolean {
-    return (
-        question.expected.toLowerCase().trim() === answer.toLowerCase().trim()
-    );
+    answer = answer.trim();
+    answer = answer.toLowerCase();
+    let fixedQuestion = question.expected.trim();
+    fixedQuestion = fixedQuestion.toLowerCase();
+    if (answer === fixedQuestion) {
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -46,10 +50,14 @@ export function isValid(question: Question, answer: string): boolean {
     if (question.type === "short_answer_question") {
         return true;
     } else {
-        return question.options.some(
-            (option: string): boolean => option === answer
+        const check = question.options.filter(
+            (option: string): boolean => answer === option
         );
+        if (check.length > 0) {
+            return true;
+        }
     }
+    return false;
 }
 
 /**
@@ -59,9 +67,9 @@ export function isValid(question: Question, answer: string): boolean {
  * name "My First Question" would become "9: My First Q".
  */
 export function toShortForm(question: Question): string {
-    const ID = question.id;
-    const name = question.name.slice(0, 10);
-    return ID + ": " + name;
+    const id = question.id;
+    const name = question.name;
+    return id + ": " + name.substring(0, 10);
 }
 
 /**
@@ -82,34 +90,29 @@ export function toShortForm(question: Question): string {
  * Check the unit tests for more examples of what this looks like!
  */
 export function toMarkdown(question: Question): string {
-    const questionName = "# " + question.name;
-    const questionBody = question.body;
-    const questionOptions = question.options.map(
-        (message: string): string => "- " + message
-    );
-    if (question.type === "short_answer_question") {
-        return questionName + "\n" + questionBody;
-    } else {
-        return (
-            questionName +
-            "\n" +
-            questionBody +
-            "\n" +
-            questionOptions[0] +
-            "\n" +
-            questionOptions[1] +
-            "\n" +
-            questionOptions[2]
+    if (question.type === "multiple_choice_question") {
+        const options = question.options.map((option: string): string =>
+            option === question.options[0] ? "- " + option : option
         );
+        return (
+            "# " +
+            question.name +
+            "\n" +
+            question.body +
+            "\n" +
+            options.join("\n- ")
+        );
+    } else {
+        return "# " + question.name + "\n" + question.body;
     }
 }
+
 /**
  * Return a new version of the given question, except the name should now be
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    const newQuestion: Question = { ...question, name: newName };
-    return newQuestion;
+    return { ...question, name: newName };
 }
 
 /**
@@ -118,7 +121,11 @@ export function renameQuestion(question: Question, newName: string): Question {
  * published; if it was published, now it should be not published.
  */
 export function publishQuestion(question: Question): Question {
-    return { ...question, published: !question.published };
+    if (question.published) {
+        return { ...question, published: false };
+    } else {
+        return { ...question, published: true };
+    }
 }
 
 /**
@@ -128,11 +135,12 @@ export function publishQuestion(question: Question): Question {
  * The `published` field should be reset to false.
  */
 export function duplicateQuestion(id: number, oldQuestion: Question): Question {
+    const originalName = oldQuestion.name;
     return {
         ...oldQuestion,
-        name: "Copy of " + oldQuestion.name,
-        id,
-        published: false
+        name: "Copy of " + originalName,
+        published: false,
+        id: id
     };
 }
 
@@ -144,11 +152,11 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * Check out the subsection about "Nested Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    const addedOption: Question = {
+    const newQuestion = {
         ...question,
         options: [...question.options, newOption]
     };
-    return addedOption;
+    return newQuestion;
 }
 
 /**
@@ -165,16 +173,12 @@ export function mergeQuestion(
     contentQuestion: Question,
     { points }: { points: number }
 ): Question {
-    return {
+    const newQuestion = {
+        ...contentQuestion,
         id: id,
-        //id: contentQuestion.id.map((o: number): number => id + o),
-        //id: contentQuestion.id,
         name: name,
-        type: contentQuestion.type,
-        body: contentQuestion.body,
-        expected: contentQuestion.expected,
-        options: contentQuestion.options,
         points: points,
         published: false
     };
+    return newQuestion;
 }
